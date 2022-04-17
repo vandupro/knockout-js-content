@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html binding</title>
+</head>
+
+<body>
+    <ul>
+        <li>Hello world</li>
+        <!--ko foreach: myItems-->
+            <li>Item <span data-bind="text: $data"></span></li>
+        <!--/ko-->
+    </ul>
+    <ul data-bind="foreach: months">
+        <li>
+            The current item is: <b data-bind="text: $data"></b>
+            <br>
+            The current year: <b data-bind="text: $parent.year"></b>
+        </li>
+    </ul>
+
+
+
+    <script src="../jquery.js"></script>
+    <script src="../knockout.js"></script>
+    <script>
+        $(document).ready(function () {
+            ko.applyBindings(
+                {
+                months: ['Jan', 'Feb', 'Mar', 'etc'],
+                year: ko.observable(2021),
+                myItems: ['a', 'b', 'c'],
+                }
+            )
+        })
+    </script>
+</body>
+
+</html>

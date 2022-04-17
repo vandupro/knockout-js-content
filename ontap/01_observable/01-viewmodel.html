@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create view model with observable</title>
+</head>
+<body>
+    
+    <h3>The name is <span data-bind="text: name"></span></h3>
+
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            // myName is viewmocel
+            // observable is used to track the changes of myName
+            var myName = {
+                firstName: ko.observable('nguyen'),
+                lastName: ko.observable('van du'),
+            };
+            
+            var result = function() {
+                this.name = myName.firstName() + ' ' + myName.lastName();
+            }
+
+
+            // active Knockout
+            ko.applyBindings(new result());
+
+        })
+    </script>
+</body>
+</html>

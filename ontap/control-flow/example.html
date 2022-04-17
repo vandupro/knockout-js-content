@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example for foreach</title>
+</head>
+<body>
+    <h3>The list of name</h3>
+    <form data-bind="submit: addNewName">
+        <input data-bind="value: newName, valueUpdate: 'afterkeydown'">
+        <button type="submit" data-bind="enable: newName().length > 0">Add</button>
+    </form>
+    <ul data-bind="foreach: people">
+        <li data-bind="text: name"></li>
+        <button data-bind="click: $parent.removeName">Remove</button>
+    </ul>
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            function appViewModel() {
+                var self = this;
+                self.people = ko.observableArray([
+                    { name: 'van du'},
+                    { name: 'quang hai'},
+                    { name: 'huyen quang'}
+                ]);
+                self.newName = ko.observable('');
+                self.addNewName = function() {
+                    self.people.push({name: self.newName()});
+                    self.newName('');
+                };
+                self.removeName = function() {
+                    self.people.remove(this);
+                }
+
+            }
+
+            ko.applyBindings(new appViewModel());
+        })
+    </script>
+</body>
+</html>

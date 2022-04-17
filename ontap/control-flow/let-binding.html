@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The foreach binding</title>
+</head>
+
+<body>
+    
+    <!--ko let: { obj: { students: students, countries: countries }} -->
+        <div data-bind="foreach: {data: obj.students, as: 'student'}">
+            <span data-bind="text: student.name"></span>
+            <!--ko if: student.age && student.gender-->
+            <br>
+            <span data-bind="text: student.age"></span>
+            <span data-bind="text: student.gender"></span>
+            <!--/ko-->
+        </div>
+        <div data-bind="foreach: {data: obj.countries, as: 'country'}">
+            <span data-bind="text: country"></span>
+        </div>
+    <!--/ko-->
+
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function () {
+            ko.applyBindings({
+                students: ko.observableArray([
+                    {name: 'van du'}, 
+                    {name: 'huyen'}, 
+                    {name: 'hoa'},
+                    {name: 'hoang', age: 24, gender: 'femail'}
+                ]),
+                countries: ko.observableArray(['vietnam', 'japan', 'china'])
+            })
+        })
+    </script>
+</body>
+
+</html>

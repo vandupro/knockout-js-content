@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html binding</title>
+</head>
+<body>
+    
+    <div data-bind="html: details"></div>
+
+    <script src="../jquery.js"></script>
+    <script src="../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            var obj = {
+                details: ko.observable(),
+            }
+            obj.details("<em>For further details, view the report <a href='report.html'>here</a>.</em>");
+
+            ko.applyBindings(obj);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visible and hidden bindings</title>
+</head>
+<body>
+    
+    <h3>
+        hello:  <span data-bind="text: name"></span>
+    </h3>
+
+    <!-- using text without a container element -->
+    <select style="width: 200px;">
+        <!-- <option >Item <span data-bind="text: name"></span></option> -->
+        <option >Item <!--ko text: name--><!--/ko--> </option>
+    </select>
+
+
+    <script src="../jquery.js"></script>
+    <script src="../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            var student = {
+                name: ko.observable(),
+            }
+
+            student.name(['vandu', 'cao thu']);
+            ko.applyBindings(student);
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The foreach binding</title>
+</head>
+
+<body>
+
+
+    <h1 data-bind="text: city"></h1>
+    <p data-bind="with: coords">
+        <!-- 
+            khi thay with = using thi neu coords = undefined se error. con voi with thi k, chi la the p not display
+         -->
+        Latitude: <span data-bind="text: latitude"> </span>,
+        Longitude: <span data-bind="text: longitude"> </span>
+    </p>
+
+    <!-- <p>
+        Latitude: <span data-bind="text: coords.latitude"> </span>,
+        Longitude: <span data-bind="text: coords.longitude"> </span>
+    </p> -->
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function () {
+            ko.applyBindings({
+                city: "London",
+                coords: {
+                    latitude: 51.5001524,
+                    longitude: -0.1262362
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The if and if not</title>
+</head>
+
+<body>
+    <!-- Example 1 -->
+    <label><input type="checkbox" data-bind="checked: displayMessage"> Display message</label>
+    <div data-bind="if: displayMessage">
+        Here is a message.
+    </div>
+
+    <!-- 
+        Example 2:
+        In the following example, 
+        the <div> element will be empty for “Mercury”, but populated for “Earth”. 
+        That’s because Earth has a non-null capital property, whereas “Mercury” has null for that property.
+     -->
+
+     <h3>This is list of students if age different null</h3>
+     <ul data-bind="foreach: students">
+            <li data-bind="if: $data.age">
+                <div data-bind="text: $data.name"></div>
+                <div data-bind="text: $data.age"></div>
+            </li>
+     </ul>
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function () {
+            ko.applyBindings({
+                displayMessage: ko.observable(false),
+                students: [
+                    { name: "huyen", age: null},
+                    { name: "linh", age: 20},
+                ]
+            })
+        })
+    </script>
+</body>
+
+</html>

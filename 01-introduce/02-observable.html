@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observable</title>
+</head>
+<body>
+    
+    <div>
+        <h1>
+            The name is <span data-bind="text: name"></span>
+            <br>
+            The age is <span data-bind="text: age"></span>
+            <br>
+            The date is <span data-bind="text: year.date"></span>
+        </h1>
+    </div>
+
+
+
+    <script src="../jquery.js"></script>
+    <script src="../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            var student = {
+                name: ko.observable('van du'),
+                age: ko.observable(123),
+                year: {
+                    date: 20
+                }
+            }
+
+            student.name('hoai thuong').age(235);
+
+            ko.applyBindings(student);
+        })
+    </script>
+</body>
+</html>

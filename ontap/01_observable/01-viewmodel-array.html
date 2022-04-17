@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create view model with observable</title>
+</head>
+<body>
+    
+    <form data-bind="submit: addItem">
+        New Item:
+        <input data-bind="value: itemToAdd, valueUpdate: 'keypress'" type="text">
+        <button type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>   
+        Your item:
+        <select data-bind="options: items"></select>
+    </form>
+
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            var arrayModel = function(items) {
+                this.itemToAdd = ko.observable('');
+                this.items = ko.observableArray(items);
+                this.addItem = function() {
+                    this.items.push(this.itemToAdd());
+                    this.itemToAdd('');
+                }
+            }
+
+            ko.applyBindings(new arrayModel(['one', 'two', 'three']));
+
+        })
+    </script>
+</body>
+</html>

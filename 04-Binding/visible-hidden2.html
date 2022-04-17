@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visible and hidden bindings</title>
+</head>
+<body>
+    
+    <div data-bind="visible: myValue().length > 0">
+        You will this message only when "shouleShowMessage" holds a true value!
+    </div>
+
+    <script src="../jquery.js"></script>
+    <script src="../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            var obj = {
+                myValue: ko.observableArray([]),
+            };
+
+            obj.myValue.push('vandu')
+            ko.applyBindings(obj);
+        })
+
+    </script>
+</body>
+</html>

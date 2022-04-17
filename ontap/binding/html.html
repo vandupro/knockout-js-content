@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text binding</title>
+</head>
+<body>
+    
+    <h3>This is the price: <span data-bind="text: firstPrice() > 100 ? 'Expensive' : 'cheap'"></span></h3>
+
+    <h3>This is the name: <span data-bind="html: nameOfItem"></span></h3>
+    
+    <!-- using text without a container element -->
+    <select name="" id="">
+        <!-- <option>Item <span data-bind="text: firstPrice"></span></option> -->
+        <option> Item <!--ko text: firstPrice--><!--/ko--></option>
+    </select>
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+            var price = function() {
+                this.firstPrice = ko.observable(200);
+                this.nameOfItem = ko.observable('<em>apple</em>');
+            }
+
+            ko.applyBindings(price);
+        })
+    </script>
+</body>
+</html>

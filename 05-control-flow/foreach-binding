@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html binding</title>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Firs name</th>
+                <th>Last name</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: people">
+            <tr>
+                <td data-bind="text: firstName"></td>
+                <td data-bind="text: lastName"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="../jquery.js"></script>
+    <script src="../knockout.js"></script>
+    <script>
+        $(document).ready(function () {
+            ko.applyBindings({
+                people: [
+                    { firstName: 'Bert', lastName: 'Bertington' },
+                    { firstName: 'Charles', lastName: 'Charlesforth' },
+                    { firstName: 'Denise', lastName: 'Dentiste' }
+                ]
+            })
+        })
+    </script>
+</body>
+
+</html>

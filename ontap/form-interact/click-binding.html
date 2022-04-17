@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The click binding</title>
+</head>
+<body>
+    <div>
+        You've clicked <span data-bind="text: numberOfClicks"></span> times
+        <button data-bind="click: incrementClickCounter">Click me</button>
+    </div>
+
+    <!-- Passing a current item as a parameter to your handler function -->
+    <ul data-bind="foreach: {data: students, as: 'student'}">
+        <li data-bind="text: student.name"></li>
+        <li data-bind="text: student.age ? student.age : ''"></li>
+        <button data-bind="click: $parent.removeStudent">Remove student</button>
+    </ul>
+    <script src="../../jquery.js"></script>
+    <script src="../../knockout.js"></script>
+    <script>
+        $(document).ready(function() {
+           function getStudent(){
+               var self = this;
+                self.numberOfClicks= ko.observable(0),
+                self.incrementClickCounter= function() {
+                    var previousCount = self.numberOfClicks();
+                    self.numberOfClicks(previousCount + 1);
+                },
+                this.students= ko.observableArray([
+                    {name: 'vandu', age: '24'},
+                    {name: 'hoa', age: '24'},
+                    {name: 'huyen',},
+                    {name: 'huy', age: '24'},
+                ]),
+                self.removeStudent= function() {
+                    self.students.remove(this);
+                }
+            }
+            ko.applyBindings(new getStudent())
+        })
+    </script>
+</body>
+</html>
